@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:testapp/chat/direct.dart';
 
 class ChatStartPage extends StatefulWidget {
   const ChatStartPage({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class _ChatStartPageState extends State<ChatStartPage> {
 
 Widget chatTile() {
   return InkWell(
-    onTap: () => null,
+    onTap: () => Get.to(ChatDirect()),
     child: ListTile(
       contentPadding: EdgeInsets.only(top: 24,bottom: 24,right: 16,left: 8),
 

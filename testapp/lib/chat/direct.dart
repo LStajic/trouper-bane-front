@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ChatDirect extends StatefulWidget {
@@ -39,33 +41,70 @@ class _ChatDirectState extends State<ChatDirect> {
       body: Stack(
         children: [
           Container(),
-          SingleChildScrollView(
-            child: ListView.builder(
+          Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: SingleChildScrollView(
               reverse: true,
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              shrinkWrap: true,
-              itemCount: nm,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      child: Text(
-                        "dummy",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        color: Colors.grey.shade200,
-                      ),
-                    ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ListView.builder(
+                    reverse: false,
+                    padding: EdgeInsets.only(top: 10, bottom: 10),
+                    shrinkWrap: true,
+                    itemCount: nm,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            child: Text(
+                              _list[index].toString(),
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              color: Colors.grey.shade200,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ],
+              ),
             ),
           ),
+          // SingleChildScrollView(
+          //   reverse: true,
+          //   child: ListView.builder(
+          //     reverse: true,
+          //     padding: EdgeInsets.only(top: 10, bottom: 10),
+          //     shrinkWrap: true,
+          //     itemCount: nm,
+          //     itemBuilder: (context, index) {
+          //       return Container(
+          //         padding: const EdgeInsets.all(16.0),
+          //         child: Align(
+          //           alignment: Alignment.centerLeft,
+          //           child: Container(
+          //             padding: EdgeInsets.all(16),
+          //             child: Text(
+          //               _list[index].toString(),
+          //               style: TextStyle(fontSize: 16),
+          //             ),
+          //             decoration: BoxDecoration(
+          //               borderRadius: BorderRadius.all(Radius.circular(20)),
+          //               color: Colors.grey.shade200,
+          //             ),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
@@ -105,7 +144,6 @@ class _ChatDirectState extends State<ChatDirect> {
                   SizedBox(
                     width: 15,
                   ),
-                  
                   GestureDetector(
                     onTap: (() => setState(() {
                           nm++;
@@ -118,11 +156,14 @@ class _ChatDirectState extends State<ChatDirect> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Icon(
-                      Icons.send,
-                      color: Colors.white,
-                      size: 20,
+                        Icons.send,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                     ),
-                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
                   ),
                 ],
               ),
@@ -147,3 +188,5 @@ Widget ChatMessage(String dummy) {
     ),
   );
 }
+
+List<int> _list = List.generate(50, (index) => index);
